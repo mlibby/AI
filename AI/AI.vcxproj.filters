@@ -14,4 +14,26 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="8puzzle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="romania.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fifo_demo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fifo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

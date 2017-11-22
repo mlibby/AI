@@ -68,6 +68,7 @@
     <NMakeCleanCommandLine>make clean</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>make clean all</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <IncludePath>X:\cygwin64\usr\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakeBuildCommandLine>make</NMakeBuildCommandLine>
@@ -93,6 +94,16 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fifo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="8puzzle.c" />
+    <ClCompile Include="fifo.c" />
+    <ClCompile Include="fifo_demo.c" />
+    <ClCompile Include="romania.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
