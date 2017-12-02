@@ -1,4 +1,5 @@
 #include "romania.h"
+#include "roadmap.h"
 
 #define CITY_COUNT 20
 #define PAIR_COUNT 23
@@ -29,17 +30,17 @@ char *edges[PAIR_COUNT][3] = {
 	{"Urziceni", "142", "Vaslui"}
 };
 
-graph *build_graph_romania()
+graph *romania_build_graph()
 {
 	graph *romania = graph_new(CITY_COUNT);
 
 	for (int i = 0; i < PAIR_COUNT; i++) {
 		char *city_one = edges[i][0];
 		char *city_two = edges[i][2];
-		
+
 		int distance = 0;
 		int parsed = sscanf(edges[i][1], "%d", &distance);
-	
+
 		if (parsed)
 		{
 			graph_add_pair(romania, city_one, city_two, distance);
@@ -48,4 +49,26 @@ graph *build_graph_romania()
 	}
 
 	return romania;
+}
+
+char **romania_get_city_names(graph *romania) {
+	char **cities = (char **)malloc(sizeof(char*) * romania->vertex_count);
+
+	for (int i = 0; i < romania->vertex_count; i++) {
+		cities[i] = strdup(romania->vertices[i]->name);
+	}
+
+	sort_char_in_place(romania->vertex_count, cities);
+	return cities;
+}
+
+int romania_get_city_count(graph *romania) {
+	return romania->vertex_count;
+}
+
+void romania_free_city_names(graph *romania, char **cities) {
+	for (int i = 0; i < romania->vertex_count; i++) {
+		free(cities[i]);
+	}
+	free(cities);
 }

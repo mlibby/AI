@@ -48,6 +48,12 @@
     <ClCompile Include="common.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="roadmap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="romania_demo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fifo.h">
@@ -63,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="roadmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

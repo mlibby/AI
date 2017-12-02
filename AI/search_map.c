@@ -4,16 +4,10 @@
 int main(int argc, char* argv[]) {
 	printf("Romania Map Search\n");
 
-	graph *romania = build_graph_romania();
+	graph *romania = romania_build_graph();
 
-	int city_count = romania->vertex_count;
-	char **cities = (char **)malloc(sizeof(char*) * city_count);
-
-	for (int i = 0; i < city_count; i++) {
-		cities[i] = strdup(romania->vertices[i]->name);
-	}
-
-	sort_char_in_place(city_count, cities);
+	int city_count = romania_get_city_count(romania);
+	char **cities = romania_get_city_names(romania);
 
 	printf("Here is the list of cities:\n");
 	for (int i = 0; i < city_count; i++) {
@@ -28,5 +22,6 @@ int main(int argc, char* argv[]) {
 
 	printf("Finding route from %s to %s...\n", starting_city, ending_city);
 
+	romania_free(romania);
 	return 0;
 }

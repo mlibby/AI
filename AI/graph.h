@@ -23,7 +23,7 @@ struct _graph_edge {
 	graph_edge *next_edge;
 };
 
-graph *graph_new(int vertex_count);
+graph *graph_new(char *edges[][4]);
 void graph_free(graph *this);
 void graph_add_pair(graph *this, char *lname, char *rname, int cost);
 
