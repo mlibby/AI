@@ -112,8 +112,7 @@
     <ClCompile Include="graph.c" />
     <ClCompile Include="graph_demo.c" />
     <ClCompile Include="roadmap.c" />
-    <ClCompile Include="romania.c" />
-    <ClCompile Include="romania_demo.c" />
+    <ClCompile Include="roadmap_demo.c" />
     <ClCompile Include="search_map.c" />
     <ClCompile Include="sort.c" />
     <ClCompile Include="sort_demo.c" />

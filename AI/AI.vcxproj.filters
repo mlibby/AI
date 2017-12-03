@@ -36,9 +36,6 @@
     <ClCompile Include="search_map.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="romania.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,7 +48,7 @@
     <ClCompile Include="roadmap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="romania_demo.c">
+    <ClCompile Include="roadmap_demo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,13 +62,13 @@
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="romania.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="roadmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="romania.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

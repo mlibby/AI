@@ -87,8 +87,6 @@ graph *graph_new(char *edges[][4]) {
 		edge = (char **)edges[edge_count];
 	}
 
-	printf("Processed %d edges\n", edge_count);
-
 	return this;
 }
 
