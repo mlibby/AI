@@ -4,7 +4,7 @@ int main(int argc, char* argv[]) {
 	printf("Sort Demo\n");
 
 	int city_count = 6;
-	char **cities = (char **)malloc(sizeof(char*) * city_count);
+	char **cities = malloc(sizeof(char*) * city_count);
 
 	cities[0] = strdup("alpha");
 	cities[1] = strdup("zebra");

@@ -1,5 +1,6 @@
 #include "roadmap.h"
 #include "romania.h"
+#include "tree_search.h"
 
 int main(int argc, char* argv[]) {
 	printf("Map Search\n");
@@ -19,6 +20,8 @@ int main(int argc, char* argv[]) {
 	char *ending_city = romania->city_names[ending_index];
 
 	printf("Finding route from %s to %s...\n", starting_city, ending_city);
+
+	tree_search *search = tree_search_new(romania->graph, starting_city, ending_city);
 
 	roadmap_free(romania);
 	return 0;

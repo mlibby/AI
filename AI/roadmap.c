@@ -3,7 +3,7 @@
 #include "sort.h"
 
 roadmap *roadmap_new(char *routes[][4]) {
-	roadmap *this = (roadmap *)malloc(sizeof(roadmap));
+	roadmap *this = malloc(sizeof(this));
 	this->is_updated = FALSE;
 	this->city_count = 0;
 	this->city_names = NULL;
@@ -24,7 +24,7 @@ void roadmap_update(roadmap *this) {
 		roadmap_city_names_free(this);
 	}
 
-	char **city_names = (char **)malloc(sizeof(char*) * this->graph->vertex_count);
+	char **city_names = malloc(sizeof(char*) * this->graph->vertex_count);
 
 	for (int i = 0; i < this->graph->vertex_count; i++) {
 		city_names[i] = strdup(this->graph->vertices[i]->name);

@@ -26,5 +26,6 @@ struct _graph_edge {
 graph *graph_new(char *edges[][4]);
 void graph_free(graph *this);
 void graph_add_pair(graph *this, char *lname, char *rname, int cost);
+graph_vertex *graph_find_vertex(graph *this, char *name);
 
 #endif /* _GRAPH_H */

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -102,7 +102,9 @@
     <ClInclude Include="graph.h" />
     <ClInclude Include="roadmap.h" />
     <ClInclude Include="romania.h" />
+    <ClInclude Include="search_node.h" />
     <ClInclude Include="sort.h" />
+    <ClInclude Include="tree_search.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="8puzzle.c" />
@@ -114,8 +116,10 @@
     <ClCompile Include="roadmap.c" />
     <ClCompile Include="roadmap_demo.c" />
     <ClCompile Include="search_map.c" />
+    <ClCompile Include="search_node.c" />
     <ClCompile Include="sort.c" />
     <ClCompile Include="sort_demo.c" />
+    <ClCompile Include="tree_search.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

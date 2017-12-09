@@ -4,7 +4,7 @@
 
 queue * fifo_new()
 {
-	queue *fifo = malloc(sizeof(queue));
+	queue *fifo = malloc(sizeof(fifo));
 	fifo->head = NULL;
 	fifo->tail = NULL;
 	fifo->count = 0;
@@ -24,7 +24,7 @@ void fifo_add(queue * fifo, void * data)
 {
 	fifo->count = fifo->count + 1;
 
-	queue_item *item = malloc(sizeof(queue_item));
+	queue_item *item = malloc(sizeof(item));
 	item->prev = fifo->tail;
 	item->next = NULL;
 	item->data = data;

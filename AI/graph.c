@@ -16,7 +16,7 @@ graph_vertex *graph_find_vertex(graph *this, char *name) {
 }
 
 graph_vertex *graph_vertex_new(char *name) {
-	graph_vertex *this = (graph_vertex *)malloc(sizeof(graph_vertex));
+	graph_vertex *this = malloc(sizeof(this));
 	this->name = name;
 	this->edge = NULL;
 	return this;
@@ -28,10 +28,10 @@ graph_vertex *graph_vertex_find_or_new(graph *this, char *name) {
 		vertex = graph_vertex_new(name);
 		this->vertex_count++;
 		if (NULL == this->vertices) {
-			this->vertices = (graph_vertex **)malloc(sizeof(graph_vertex*));
+			this->vertices = malloc(sizeof(vertex));
 		}
 		else {
-			this->vertices = (graph_vertex **)realloc(this->vertices, sizeof(graph_vertex*) * this->vertex_count);
+			this->vertices = realloc(this->vertices, sizeof(vertex) * this->vertex_count);
 		}
 		this->vertices[this->vertex_count - 1] = vertex;
 	}
@@ -39,7 +39,7 @@ graph_vertex *graph_vertex_find_or_new(graph *this, char *name) {
 }
 
 graph_edge *graph_edge_new(char *name, int cost) {
-	graph_edge *edge = (graph_edge *)malloc(sizeof(graph_edge));
+	graph_edge *edge = malloc(sizeof(edge));
 	edge->to = name;
 	edge->cost = cost;
 	edge->next_edge = NULL;
@@ -63,7 +63,7 @@ void graph_vertex_add_edge(graph_vertex *vertex, char *name, int cost) {
 }
 
 graph *graph_new(char *edges[][4]) {
-	graph *this = (graph *)malloc(sizeof(graph));
+	graph *this = malloc(sizeof(this));
 	this->vertex_count = 0;
 	this->vertices = NULL;
 
