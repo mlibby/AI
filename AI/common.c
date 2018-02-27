@@ -7,7 +7,7 @@ int get_numeric_input(char *prompt, int min, int max) {
 	ssize_t chars_read = -1;
 
 	while (chars_read < 2 || result < min || result > max) {
-		printf(prompt);
+		printf("%s", prompt);
 		chars_read = getline(&line, &n, stdin);
 		sscanf(line, "%d", &result);
 		free(line);

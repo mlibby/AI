@@ -24,4 +24,10 @@ int main(int argc, char* argv[]) {
 	for (int i = 0; i < city_count; i++) {
 		printf("%i. %s\n", i + 1, cities[i]);
 	}
+
+	for (int i = 0; i < city_count; i++) {
+		free(cities[i]);
+	}
+	free(cities);
+
 }

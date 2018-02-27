@@ -3,24 +3,23 @@
 #ifndef _FIFO_H
 #define _FIFO_H
 
-typedef struct _queue_item queue_item;
-struct _queue_item {
-	queue_item *next;
-	queue_item *prev;
+typedef struct _fifo_item fifo_item;
+struct _fifo_item {
+	fifo_item *next;
 	void *data;
 };
 
-typedef struct _queue queue;
-struct _queue {
-	queue_item *head;
-	queue_item *tail;
-	int count;
+typedef struct _fifo fifo;
+struct _fifo {
+	fifo_item *head;
+	fifo_item *tail;
 };
 
-queue *fifo_new();
-void fifo_free(queue *fifo);
+fifo *fifo_new();
+void fifo_free(fifo *this);
 
-void fifo_add(queue *fifo, void *data);
-void *fifo_remove(queue *fifo);
+int fifo_has_items(fifo *this);
+void fifo_add(fifo *this, void *data);
+void *fifo_remove(fifo *this);
 
 #endif /* _FIFO_H */

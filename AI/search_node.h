@@ -9,6 +9,7 @@ struct search_node {
 	char *action;
 	int path_cost;
 	search_node *parent;
+	search_node *prev_node;
 };
 
 search_node *search_node_new(char *state, char *action, int path_cost, search_node *parent);

@@ -1,3 +1,4 @@
+#include <time.h>
 #include "common.h"
 #include "fifo.h"
 #include "graph.h"
@@ -11,15 +12,16 @@ struct tree_search {
 	graph *graph;
 	char *initial_state;
 	char *goal_state;
-	time_t start_time;
-	time_t end_time;
+	clock_t start_time;
+	clock_t end_time;
 	int nodes_used;
-	queue *frontier;
+	search_node *tail_node;
+	fifo *frontier;
 	search_node *solution;
 };
 
-tree_search *tree_search_new(graph *graph, char *initial, char *goal);
+tree_search *tree_search_new(graph *graph);
 void tree_search_free(tree_search *this);
-int tree_search_search(tree_search *this);
+int tree_search_search(tree_search *, char *, char *);
 
 #endif /* _TREE_SEARCH_H */

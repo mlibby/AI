@@ -1,45 +1,56 @@
 #include "graph.h"
 
-graph_vertex *graph_find_vertex(graph *this, char *name) {
-	graph_vertex *vertex = NULL;
-	int index = 0;
-	while (index < this->vertex_count && (graph_vertex*)NULL == vertex) {
-		if (!strcmp(name, this->vertices[index]->name)) {
-			vertex = this->vertices[index];
+graph_vertex
+*graph_find_vertex(graph *this, char *name)
+{
+	graph_vertex *vertex = this->head;
+
+	while (vertex != NULL) {
+		if (!strcmp(name, vertex->name)) {
+			return vertex;
 		}
 		else {
-			index++;
+			vertex = vertex->next;
 		}
+	}
+
+	return NULL;
+}
+
+graph_vertex
+*graph_graph_vertex_new(graph *this, char *name)
+{
+	graph_vertex *vertex = malloc(sizeof(graph_vertex));
+	vertex->name = name;
+	vertex->edge = NULL;
+	vertex->next = NULL;
+
+	if (this->head == NULL) {
+		this->head = vertex;
+		this->tail = vertex;
+	}
+	else {
+		this->tail->next = vertex;
+		this->tail = vertex;
 	}
 
 	return vertex;
 }
 
-graph_vertex *graph_vertex_new(char *name) {
-	graph_vertex *this = malloc(sizeof(this));
-	this->name = name;
-	this->edge = NULL;
-	return this;
-}
-
-graph_vertex *graph_vertex_find_or_new(graph *this, char *name) {
+graph_vertex
+*graph_find_or_new_vertex(graph *this, char *name)
+{
 	graph_vertex *vertex = graph_find_vertex(this, name);
 	if (NULL == vertex) {
-		vertex = graph_vertex_new(name);
-		this->vertex_count++;
-		if (NULL == this->vertices) {
-			this->vertices = malloc(sizeof(vertex));
-		}
-		else {
-			this->vertices = realloc(this->vertices, sizeof(vertex) * this->vertex_count);
-		}
-		this->vertices[this->vertex_count - 1] = vertex;
+		vertex = graph_graph_vertex_new(this, name);
 	}
 	return vertex;
 }
 
-graph_edge *graph_edge_new(char *name, int cost) {
-	graph_edge *edge = malloc(sizeof(edge));
+graph_edge
+*graph_edge_new(char *name, int cost)
+{
+	graph_edge *edge = malloc(sizeof(graph_edge));
 	edge->to = name;
 	edge->cost = cost;
 	edge->next_edge = NULL;
@@ -47,7 +58,9 @@ graph_edge *graph_edge_new(char *name, int cost) {
 	return edge;
 }
 
-void graph_vertex_add_edge(graph_vertex *vertex, char *name, int cost) {
+void
+graph_vertex_add_edge(graph_vertex *vertex, char *name, int cost)
+{
 	graph_edge *new_edge = graph_edge_new(name, cost);
 
 	graph_edge *edge = vertex->edge;
@@ -62,35 +75,72 @@ void graph_vertex_add_edge(graph_vertex *vertex, char *name, int cost) {
 	}
 }
 
-graph *graph_new(char *edges[][4]) {
-	graph *this = malloc(sizeof(this));
-	this->vertex_count = 0;
-	this->vertices = NULL;
-
-	int edge_count = 0;
-	char **edge;
-	edge = (char **)edges[edge_count];
-	while (edge[0] != NULL) {
-		graph_vertex *from = graph_vertex_find_or_new(this, edge[0]);
-		graph_vertex *to = graph_vertex_find_or_new(this, edge[2]);
-
-		int cost = 0;
-		int parsed = sscanf(edge[1], "%d", &cost);
-		if (parsed) {
-			graph_vertex_add_edge(from, to->name, cost);
-			if (strncmp("0", edge[3], 1)) {
-				graph_vertex_add_edge(to, from->name, cost);
-			}
-		}
-
-		edge_count++;
-		edge = (char **)edges[edge_count];
-	}
-
+graph
+*graph_new()
+{
+	graph *this = malloc(sizeof(graph));
+	this->head = NULL;
+	this->tail = NULL;
 	return this;
 }
 
-void graph_free(graph *this) {
-	free(this->vertices);
+void
+graph_add_edge(graph *this, char *from, char *to, int cost, int is_directed)
+{
+	graph_vertex *from_v = graph_find_or_new_vertex(this, from);
+	graph_vertex *to_v = graph_find_or_new_vertex(this, to);
+
+	graph_vertex_add_edge(from_v, to_v->name, cost);
+	if (!is_directed) {
+		graph_vertex_add_edge(to_v, from_v->name, cost);
+	}
+}
+
+void
+graph_set_edges(graph *this, char *edges[][4])
+{
+	int edge_index = 0;
+	while (edges[edge_index][0] != NULL) {
+		int cost = 0;
+		if (sscanf(edges[edge_index][1], "%d", &cost)) {
+			int is_directed = strncmp("0", edges[edge_index][3], 1);
+			graph_add_edge(this, edges[edge_index][0], edges[edge_index][2], cost, is_directed);
+		}
+		edge_index++;
+	}
+}
+
+void 
+graph_vertex_free(graph_vertex *this)
+{
+	while (this->edge != NULL) {
+		graph_edge *edge = this->edge;
+		this->edge = edge->next_edge;
+		free(edge);
+	}
 	free(this);
+}
+
+void
+graph_free(graph *this)
+{
+	while (this->head != NULL) {
+		graph_vertex *vertex = this->head;
+		this->head = vertex->next;
+		graph_vertex_free(vertex);
+	}
+
+	free(this);
+}
+
+int
+graph_vertex_count(graph *this)
+{
+	int count = 0;
+	graph_vertex *vertex = this->head;
+	while (vertex != NULL) {
+		count++;
+		vertex = vertex->next;
+	}
+	return count;
 }

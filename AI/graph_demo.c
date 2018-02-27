@@ -1,7 +1,7 @@
 #include "graph.h"
 #include "romania.h"
 
-char *sq[][4] = {
+char *edges[][4] = {
 	{"NW", "10", "NE", "0"},
 	{"NE", "10", "SE", "0"},
 	{"SE", "10", "SW", "0"},
@@ -14,15 +14,15 @@ char *sq[][4] = {
 int main(int argc, char* argv[]) {
 	printf("Graph Demo\n");
 
-	graph *square = graph_new(sq);
+	graph *square = graph_new();
+	graph_set_edges(square, edges);
 
 	printf("Square graph built\n");
-
-	printf("Graph has %i vertices\n", square->vertex_count);
+	printf("Graph has %i vertices\n", graph_vertex_count(square));
 
 	int i = 0;
-	while (i < square->vertex_count) {
-		graph_vertex *vertex = square->vertices[i];
+	graph_vertex *vertex = square->head;
+	while (vertex != NULL) {
 		printf("Vertex %i: %s\n", i, vertex->name);
 		i++;
 
@@ -31,5 +31,8 @@ int main(int argc, char* argv[]) {
 			printf(" - %s (%i)\n", edge->to, edge->cost);
 			edge = edge->next_edge;
 		}
+		vertex = vertex->next;
 	}
+
+	graph_free(square);
 }

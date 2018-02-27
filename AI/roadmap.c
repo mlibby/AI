@@ -1,13 +1,28 @@
-#include "common.h"
 #include "roadmap.h"
 #include "sort.h"
 
+void roadmap_build_cities(roadmap *this) {
+	int vertex_count = graph_vertex_count(this->graph);
+	char **city_names = malloc(sizeof(char*) * vertex_count);
+
+	graph_vertex *vertex = this->graph->head;
+	for (int i = 0; i < vertex_count; i++) {
+		city_names[i] = strdup(vertex->name);
+		vertex = vertex->next;
+	}
+
+	sort_char_in_place(vertex_count, city_names);
+	this->city_names = city_names;
+	this->city_count = vertex_count;
+}
+
 roadmap *roadmap_new(char *routes[][4]) {
-	roadmap *this = malloc(sizeof(this));
-	this->is_updated = FALSE;
+	roadmap *this = malloc(sizeof(roadmap));
 	this->city_count = 0;
 	this->city_names = NULL;
-	this->graph = graph_new(routes);
+	this->graph = graph_new();
+	graph_set_edges(this->graph, routes);
+	roadmap_build_cities(this);
 	return this;
 }
 
@@ -19,33 +34,8 @@ void roadmap_city_names_free(roadmap *this) {
 	free(this->city_names);
 }
 
-void roadmap_update(roadmap *this) {
-	if (this->city_names != NULL) {
-		roadmap_city_names_free(this);
-	}
-
-	char **city_names = malloc(sizeof(char*) * this->graph->vertex_count);
-
-	for (int i = 0; i < this->graph->vertex_count; i++) {
-		city_names[i] = strdup(this->graph->vertices[i]->name);
-	}
-
-	sort_char_in_place(this->graph->vertex_count, city_names);
-	
-	this->city_names = city_names;
-	this->city_count = this->graph->vertex_count;
-}
-
-int roadmap_city_count(roadmap *this)
-{
-	if (!this->is_updated) {
-		roadmap_update(this);
-	}
-	return this->city_count;
-}
-
-
 void roadmap_free(roadmap *this) {
+	roadmap_city_names_free(this);
 	graph_free(this->graph);
 	free(this);
 }

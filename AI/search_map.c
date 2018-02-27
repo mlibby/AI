@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 	roadmap *romania = roadmap_new(routes_of_romania);
 
 	printf("Here is the list of cities:\n");
-	int city_count = roadmap_city_count(romania);
+	int city_count = romania->city_count;
 	for (int i = 0; i < city_count; i++) {
 		printf("%i. %s\n", i + 1, romania->city_names[i]);
 	}
@@ -21,8 +21,12 @@ int main(int argc, char* argv[]) {
 
 	printf("Finding route from %s to %s...\n", starting_city, ending_city);
 
-	tree_search *search = tree_search_new(romania->graph, starting_city, ending_city);
+	tree_search *search = tree_search_new(romania->graph);
+	tree_search_search(search, starting_city, ending_city);
 
+	printf("Search took %f seconds\n", difftime(search->end_time, search->start_time));
+
+	tree_search_free(search);
 	roadmap_free(romania);
 	return 0;
 }
