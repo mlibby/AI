@@ -24,9 +24,6 @@
     <ClCompile Include="8puzzle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fifo_demo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="graph.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,6 +48,18 @@
     <ClCompile Include="roadmap_demo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="search_node.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tree_search.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fifo.h">
@@ -69,6 +78,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="romania.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="search_node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tree_search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_fifo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

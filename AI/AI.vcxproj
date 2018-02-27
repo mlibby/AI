@@ -104,13 +104,14 @@
     <ClInclude Include="romania.h" />
     <ClInclude Include="search_node.h" />
     <ClInclude Include="sort.h" />
+    <ClInclude Include="test.h" />
+    <ClInclude Include="test_fifo.h" />
     <ClInclude Include="tree_search.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="8puzzle.c" />
     <ClCompile Include="common.c" />
     <ClCompile Include="fifo.c" />
-    <ClCompile Include="fifo_demo.c" />
     <ClCompile Include="graph.c" />
     <ClCompile Include="graph_demo.c" />
     <ClCompile Include="roadmap.c" />
@@ -119,6 +120,8 @@
     <ClCompile Include="search_node.c" />
     <ClCompile Include="sort.c" />
     <ClCompile Include="sort_demo.c" />
+    <ClCompile Include="test.c" />
+    <ClCompile Include="test_fifo.c" />
     <ClCompile Include="tree_search.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
