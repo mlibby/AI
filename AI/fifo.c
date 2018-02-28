@@ -1,6 +1,7 @@
 #include "fifo.h"
 
-fifo *fifo_new()
+fifo 
+*fifo_new()
 {
 	fifo *this = malloc(sizeof(fifo));
 	this->head = NULL;
@@ -8,7 +9,8 @@ fifo *fifo_new()
 	return this;
 }
 
-void fifo_free(fifo *this)
+void 
+fifo_free(fifo *this)
 {
 	while (fifo_has_items(this)) {
 		fifo_remove(this);
@@ -16,12 +18,14 @@ void fifo_free(fifo *this)
 	free(this);
 }
 
-int fifo_has_items(fifo *this)
+int 
+fifo_has_items(fifo *this)
 {
 	return this->head != NULL;
 }
 
-void fifo_add(fifo *this, void *data)
+void 
+fifo_add(fifo *this, void *data)
 {
 	fifo_item *item = malloc(sizeof(fifo_item));
 	item->next = NULL;
@@ -39,7 +43,8 @@ void fifo_add(fifo *this, void *data)
 }
 
 
-void *fifo_remove(fifo *this)
+void 
+*fifo_remove(fifo *this)
 {
 	void *data = NULL;
 

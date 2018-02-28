@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #ifndef _TEST_H
 #define _TEST_H

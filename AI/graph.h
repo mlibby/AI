@@ -1,5 +1,3 @@
- #include "common.h"
-
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
@@ -20,15 +18,18 @@ struct graph_vertex {
 
 struct graph_edge {
 	int cost;
-	char *to;
-	graph_edge *next_edge;
+	graph_vertex *to;
+	graph_edge *next;
 };
 
 graph *graph_new();
+graph *graph_create(char *edges[][4]);
 void graph_free(graph *this);
 
-void graph_set_edges(graph *this, char *edges[][4]);
+graph_vertex *graph_add_vertex(graph *this, char *name);
 graph_vertex *graph_find_vertex(graph *this, char *name);
 int graph_vertex_count(graph *this);
+void graph_add_edge(graph *this, char *from, char *to, int cost);
+int graph_edge_count(graph *this);
 
 #endif /* _GRAPH_H */

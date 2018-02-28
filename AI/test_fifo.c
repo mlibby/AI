@@ -1,5 +1,6 @@
 #include "test.h"
 #include "fifo.h"
+#include "test_fifo.h"
 
 void test_fifo_new()
 {
