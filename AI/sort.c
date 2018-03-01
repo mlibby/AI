@@ -1,3 +1,4 @@
+#include <string.h>
 #include "sort.h"
 
 void sort_char_in_place(int list_size, char **list) {

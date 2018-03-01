@@ -26,10 +26,11 @@ graph *graph_new();
 graph *graph_create(char *edges[][4]);
 void graph_free(graph *this);
 
+void graph_add_edge(graph *this, char *from, char *to, int cost);
 graph_vertex *graph_add_vertex(graph *this, char *name);
 graph_vertex *graph_find_vertex(graph *this, char *name);
-int graph_vertex_count(graph *this);
-void graph_add_edge(graph *this, char *from, char *to, int cost);
+char **graph_get_vertex_names(graph *this);
 int graph_edge_count(graph *this);
+int graph_vertex_count(graph *this);
 
 #endif /* _GRAPH_H */

@@ -1,8 +1,11 @@
+#include <stdlib.h>
+#include "test.h"
+#include "test_sort.h"
 #include "sort.h"
 
-int main(int argc, char* argv[]) {
-	printf("Sort Demo\n");
-
+void
+test_sort_all()
+{
 	int city_count = 6;
 	char **cities = malloc(sizeof(char*) * city_count);
 
@@ -13,21 +16,17 @@ int main(int argc, char* argv[]) {
 	cities[4] = strdup("foxtrot");
 	cities[5] = strdup("charlie");
 
-	printf("Unsorted List:\n");
-	for (int i = 0; i < city_count; i++) {
-		printf("%i. %s\n", i + 1, cities[i]);
-	}
-
 	sort_char_in_place(city_count, cities);
 
-	printf("Sorted List:\n");
-	for (int i = 0; i < city_count; i++) {
-		printf("%i. %s\n", i + 1, cities[i]);
-	}
+	ASSERT(0 == strcmp("alpha", cities[0]));
+	ASSERT(0 == strcmp("bravo", cities[1]));
+	ASSERT(0 == strcmp("charlie", cities[2]));
+	ASSERT(0 == strcmp("foxtrot", cities[3]));
+	ASSERT(0 == strcmp("tango", cities[4]));
+	ASSERT(0 == strcmp("zebra", cities[5]));
 
 	for (int i = 0; i < city_count; i++) {
 		free(cities[i]);
 	}
 	free(cities);
-
 }

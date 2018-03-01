@@ -1,6 +1,8 @@
+#include <stdlib.h>
 #include "common.h"
-#include "test.h"
 #include "graph.h"
+#include "sort.h"
+#include "test.h"
 
 void test_graph_new()
 {
@@ -66,31 +68,32 @@ void test_graph_add_edge()
 	graph_add_edge(graph, vertex_two, vertex_three, cost);
 	ASSERT(3 == graph_edge_count(graph));
 
+	/* cannot add duplicate edges (where to/from is the same) */
 	graph_add_edge(graph, vertex_one, vertex_two, cost);
 	ASSERT(3 == graph_edge_count(graph));
 
 	graph_free(graph);
 }
 
+/*
+* format is:
+* 1. From name
+* 2. Cost
+* 3. To name
+* 4. 0 == undirected edge, 1 == directed edge
+*/
+static char *edges[][4] = {
+	{ "NW", "10", "NE", "0" },
+	{ "NE", "10", "SE", "0" },
+	{ "SE", "10", "SW", "0" },
+	{ "SW", "10", "NW", "0" },
+	{ "NW", "14", "SE", "1" },
+	{ "NE", "14", "SW", "1" },
+	{ NULL, NULL, NULL, NULL }
+};
+
 void test_graph_create()
 {
-	/* 
-	* format is: 
-	* 1. From name
-	* 2. Cost
-	* 3. To name
-	* 4. 0 == undirected edge, 1 == directed edge
-	*/
-	char *edges[][4] = {
-		{ "NW", "10", "NE", "0" },
-		{ "NE", "10", "SE", "0" },
-		{ "SE", "10", "SW", "0" },
-		{ "SW", "10", "NW", "0" },
-		{ "NW", "14", "SE", "1" },
-		{ "NE", "14", "SW", "1" },
-		{ NULL, NULL, NULL, NULL }
-	};
-
 	graph *square = graph_create(edges);
 
 	ASSERT(4 == graph_vertex_count(square));
@@ -122,6 +125,26 @@ void test_graph_create()
 	graph_free(square);
 }
 
+void test_graph_vertex_names()
+{
+	graph *square = graph_create(edges);
+	char **vertex_names = graph_get_vertex_names(square);
+	int vertex_count = graph_vertex_count(square);
+
+	sort_char_in_place(vertex_count, vertex_names);
+
+	ASSERT(0 == strcmp("NE", vertex_names[0]));
+	ASSERT(0 == strcmp("NW", vertex_names[1]));
+	ASSERT(0 == strcmp("SE", vertex_names[2]));
+	ASSERT(0 == strcmp("SW", vertex_names[3]));
+
+	for(int i = 0; i < vertex_count; i++) {
+		free(vertex_names[i]);
+	}
+	free(vertex_names);
+	graph_free(square);
+}
+
 void test_graph_all()
 {
 	test_graph_new();
@@ -129,4 +152,5 @@ void test_graph_all()
 	test_graph_add_duplicate_vertex();
 	test_graph_add_edge();
 	test_graph_create();
+	test_graph_vertex_names();
 }

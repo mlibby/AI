@@ -27,25 +27,16 @@
     <ClCompile Include="graph.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="graph_demo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="search_map.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sort_demo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="common.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="roadmap.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="roadmap_demo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="search_node.c">
@@ -58,6 +49,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="test_fifo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_graph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_sort.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="test_fifo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

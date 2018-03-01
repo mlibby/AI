@@ -147,6 +147,22 @@ graph_vertex_count(graph *this)
 	return count;
 }
 
+char 
+**graph_get_vertex_names(graph *this)
+{
+	int count = graph_vertex_count(this);
+	char **names = malloc(sizeof(char*) * count);
+
+	graph_vertex *vertex = this->head;
+	for (int i = 0; i < count; i++) {
+		names[i] = strdup(vertex->name);
+		vertex = vertex->next;
+	}
+
+	return names;
+}
+
+
 int
 graph_edge_count(graph *this)
 {

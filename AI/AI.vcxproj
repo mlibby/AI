@@ -107,6 +107,7 @@
     <ClInclude Include="test.h" />
     <ClInclude Include="test_fifo.h" />
     <ClInclude Include="test_graph.h" />
+    <ClInclude Include="test_sort.h" />
     <ClInclude Include="tree_search.h" />
   </ItemGroup>
   <ItemGroup>
@@ -115,11 +116,10 @@
     <ClCompile Include="fifo.c" />
     <ClCompile Include="graph.c" />
     <ClCompile Include="roadmap.c" />
-    <ClCompile Include="roadmap_demo.c" />
     <ClCompile Include="search_map.c" />
     <ClCompile Include="search_node.c" />
     <ClCompile Include="sort.c" />
-    <ClCompile Include="sort_demo.c" />
+    <ClCompile Include="test_sort.c" />
     <ClCompile Include="test.c" />
     <ClCompile Include="test_fifo.c" />
     <ClCompile Include="test_graph.c" />
