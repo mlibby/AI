@@ -4,6 +4,7 @@
 typedef struct graph graph;
 typedef struct graph_vertex graph_vertex;
 typedef struct graph_edge graph_edge;
+typedef struct graph_segment graph_segment;
 
 struct graph {
 	graph_vertex *head;
@@ -22,8 +23,15 @@ struct graph_edge {
 	graph_edge *next;
 };
 
+struct graph_segment {
+	char *from;
+	char *to;
+	int cost;
+	int is_directed;
+};
+
 graph *graph_new();
-graph *graph_create(char *edges[][4]);
+graph *graph_create(graph_segment segments[]);
 void graph_free(graph *this);
 
 void graph_add_edge(graph *this, char *from, char *to, int cost);

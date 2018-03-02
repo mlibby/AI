@@ -90,7 +90,7 @@ graph_edge
 	return edge;
 }
 
-int 
+int
 graph_vertex_has_edge(graph_vertex *from, graph_vertex *to)
 {
 	graph_edge *edge = from->edge;
@@ -147,7 +147,7 @@ graph_vertex_count(graph *this)
 	return count;
 }
 
-char 
+char
 **graph_get_vertex_names(graph *this)
 {
 	int count = graph_vertex_count(this);
@@ -180,32 +180,28 @@ graph_edge_count(graph *this)
 }
 
 void
-graph_create_vertices_and_edge(graph *this, char *from, char *to, int cost, int is_directed)
+graph_create_segment(graph *this, graph_segment segment)
 {
-	graph_vertex *from_vertex = graph_add_vertex(this, from);
-	graph_vertex *to_vertex = graph_add_vertex(this, to);
+	graph_vertex *from_vertex = graph_add_vertex(this, segment.from);
+	graph_vertex *to_vertex = graph_add_vertex(this, segment.to);
 
-	graph_create_edge(this, from_vertex, to_vertex, cost);
-	if (!is_directed) {
-		graph_create_edge(this, to_vertex, from_vertex, cost);
+	graph_create_edge(this, from_vertex, to_vertex, segment.cost);
+	if (!segment.is_directed) {
+		graph_create_edge(this, to_vertex, from_vertex, segment.cost);
 	}
 }
 
 graph
-*graph_create(char *edges[][4])
+*graph_create(graph_segment segments[])
 {
 	graph *this = graph_new();
 
 	int x = 0;
-	while (edges[x][0] != NULL) {
-		int cost = 0;
-		if (sscanf(edges[x][1], "%d", &cost)) {
-			int is_directed = edges[x][3][0] == '1';
-			graph_create_vertices_and_edge(this, edges[x][0], edges[x][2], cost, is_directed);
-		}
+	while (segments[x].to != NULL) {
+		graph_create_segment(this, segments[x]);
 		x++;
 	}
-	
+
 	return this;
 }
 

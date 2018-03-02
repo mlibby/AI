@@ -75,26 +75,19 @@ void test_graph_add_edge()
 	graph_free(graph);
 }
 
-/*
-* format is:
-* 1. From name
-* 2. Cost
-* 3. To name
-* 4. 0 == undirected edge, 1 == directed edge
-*/
-static char *edges[][4] = {
-	{ "NW", "10", "NE", "0" },
-	{ "NE", "10", "SE", "0" },
-	{ "SE", "10", "SW", "0" },
-	{ "SW", "10", "NW", "0" },
-	{ "NW", "14", "SE", "1" },
-	{ "NE", "14", "SW", "1" },
-	{ NULL, NULL, NULL, NULL }
+static graph_segment segments[] = {
+	{ "NW", "NE", 10, FALSE },
+	{ "NE", "SE", 10, FALSE },
+	{ "SE", "SW", 10, FALSE },
+	{ "SW", "NW", 10, FALSE },
+	{ "NW", "SE", 14, TRUE },
+	{ "NE", "SW", 14, TRUE },
+	{ NULL, NULL, 0, 0}
 };
 
 void test_graph_create()
 {
-	graph *square = graph_create(edges);
+	graph *square = graph_create(segments);
 
 	ASSERT(4 == graph_vertex_count(square));
 	ASSERT(10 == graph_edge_count(square)); // six edges, but four are undirected (4 x 2) + 2 = 10
@@ -118,7 +111,7 @@ void test_graph_create()
 
 		edge = edge->next;
 	}
-	
+
 	ASSERT(1 == leads_to_ne || 1 == leads_to_se || 1 == leads_to_sw);
 	ASSERT(3 == edge_count);
 
@@ -127,7 +120,7 @@ void test_graph_create()
 
 void test_graph_vertex_names()
 {
-	graph *square = graph_create(edges);
+	graph *square = graph_create(segments);
 	char **vertex_names = graph_get_vertex_names(square);
 	int vertex_count = graph_vertex_count(square);
 
@@ -138,7 +131,7 @@ void test_graph_vertex_names()
 	ASSERT(0 == strcmp("SE", vertex_names[2]));
 	ASSERT(0 == strcmp("SW", vertex_names[3]));
 
-	for(int i = 0; i < vertex_count; i++) {
+	for (int i = 0; i < vertex_count; i++) {
 		free(vertex_names[i]);
 	}
 	free(vertex_names);
