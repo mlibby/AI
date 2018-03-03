@@ -97,33 +97,30 @@
     <Text Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common.h" />
+    <ClInclude Include="ai_common.h" />
     <ClInclude Include="fifo.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="roadmap.h" />
     <ClInclude Include="romania.h" />
     <ClInclude Include="search_node.h" />
-    <ClInclude Include="sort.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="test_fifo.h" />
     <ClInclude Include="test_graph.h" />
-    <ClInclude Include="test_sort.h" />
+    <ClInclude Include="test_ai_common.h" />
     <ClInclude Include="tree_search.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="8puzzle.c" />
-    <ClCompile Include="common.c" />
+    <ClCompile Include="ai_common.c" />
     <ClCompile Include="fifo.c" />
     <ClCompile Include="graph.c" />
-    <ClCompile Include="roadmap.c" />
-    <ClCompile Include="search_map.c" />
-    <ClCompile Include="search_node.c" />
-    <ClCompile Include="sort.c" />
-    <ClCompile Include="test_sort.c" />
+    <ClCompile Include="xearch_map.c" />
+    <ClCompile Include="xearch_node.c" />
+    <ClCompile Include="test_ai_common.c" />
     <ClCompile Include="test.c" />
     <ClCompile Include="test_fifo.c" />
     <ClCompile Include="test_graph.c" />
-    <ClCompile Include="tree_search.c" />
+    <ClCompile Include="xree_search.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

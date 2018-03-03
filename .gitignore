@@ -5,6 +5,11 @@
 *.exe
 *.stackdump
 
+# coverage files
+*.gcda
+*.gcno
+coverage.info
+
 # User-specific files
 *.suo
 *.user
@@ -263,3 +268,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/AI/html

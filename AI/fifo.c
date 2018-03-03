@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include "ai_common.h"
 #include "fifo.h"
 
 fifo 

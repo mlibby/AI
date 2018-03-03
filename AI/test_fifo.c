@@ -1,4 +1,5 @@
 #include "test.h"
+#include "ai_common.h"
 #include "fifo.h"
 #include "test_fifo.h"
 

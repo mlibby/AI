@@ -1,7 +1,6 @@
 #include <stdlib.h>
-#include "common.h"
+#include "ai_common.h"
 #include "graph.h"
-#include "sort.h"
 #include "test.h"
 
 void test_graph_new()
@@ -76,12 +75,12 @@ void test_graph_add_edge()
 }
 
 static graph_segment segments[] = {
-	{ "NW", "NE", 10, FALSE },
-	{ "NE", "SE", 10, FALSE },
-	{ "SE", "SW", 10, FALSE },
-	{ "SW", "NW", 10, FALSE },
-	{ "NW", "SE", 14, TRUE },
-	{ "NE", "SW", 14, TRUE },
+	{ "NW", "NE", 10, GRAPH_SEGMENT_UNDIRECTED },
+	{ "NE", "SE", 10, GRAPH_SEGMENT_UNDIRECTED },
+	{ "SE", "SW", 10, GRAPH_SEGMENT_UNDIRECTED },
+	{ "SW", "NW", 10, GRAPH_SEGMENT_UNDIRECTED },
+	{ "NW", "SE", 14, GRAPH_SEGMENT_DIRECTED },
+	{ "NE", "SW", 14, GRAPH_SEGMENT_DIRECTED },
 	{ NULL, NULL, 0, 0}
 };
 

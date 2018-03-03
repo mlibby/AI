@@ -5,7 +5,7 @@
 int main(int argc, char* argv[]) {
 	printf("Map Search\n");
 
-	roadmap *romania = roadmap_new(routes_of_romania);
+	roadmap *romania = roadmap_new(romania);
 
 	printf("Here is the list of cities:\n");
 	int city_count = romania->city_count;

@@ -23,6 +23,9 @@ struct graph_edge {
 	graph_edge *next;
 };
 
+#define GRAPH_SEGMENT_UNDIRECTED 0
+#define GRAPH_SEGMENT_DIRECTED 1
+
 struct graph_segment {
 	char *from;
 	char *to;
