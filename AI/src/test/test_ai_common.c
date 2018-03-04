@@ -48,11 +48,9 @@ mock_getline(char **lineptr, long unsigned int *n, struct _IO_FILE *stream)
 	case 3:
 		*lineptr = strdup("0");
 		return 2;
-	case 4:
+	default: /* case 4 */
 		*lineptr = strdup("1");
 		return 2;
-	default:
-		return 0;
 	}
 }
 
