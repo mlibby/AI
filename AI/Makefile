@@ -6,8 +6,8 @@ CFLAGS = -g -Wall -Werror -ansi -pedantic-errors -std=gnu99 -O0 $(INCLUDE_FLAGS)
 TEST_OBJS = \
 src/test/test_ai_common.o src/ai_common.o \
 src/test/test_fifo.o src/fifo.o \
-src/test/test_graph.o src/graph.o 
-#test_tree_search.o tree_search.o
+src/test/test_graph.o src/graph.o \
+src/test/test_tree_search.o src/tree_search.o
 
 all: test.exe
 
@@ -15,7 +15,7 @@ test: test.exe
 	valgrind --leak-check=full ./test.exe
 
 coverage: test
-	gcov fifo.c graph.c ai_common.c
+	gcov src/ai_common.c src/fifo.c src/graph.c src/tree_search.c
 	lcov -c -d . --output-file=coverage.info
 	genhtml -o ./html/ coverage.info
 
