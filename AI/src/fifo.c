@@ -2,7 +2,7 @@
 #include "ai_common.h"
 #include "fifo.h"
 
-fifo 
+fifo
 *fifo_new()
 {
 	fifo *this = malloc(sizeof(fifo));
@@ -11,7 +11,7 @@ fifo
 	return this;
 }
 
-void 
+void
 fifo_free(fifo *this)
 {
 	while (fifo_has_items(this)) {
@@ -20,13 +20,13 @@ fifo_free(fifo *this)
 	free(this);
 }
 
-int 
+int
 fifo_has_items(fifo *this)
 {
 	return this->head != NULL;
 }
 
-void 
+void
 fifo_add(fifo *this, void *data)
 {
 	fifo_item *item = malloc(sizeof(fifo_item));
@@ -40,12 +40,12 @@ fifo_add(fifo *this, void *data)
 	if (this->tail != NULL) {
 		(this->tail)->next = item;
 	}
-
+	  
 	this->tail = item;
 }
 
 
-void 
+void
 *fifo_remove(fifo *this)
 {
 	void *data = NULL;
@@ -56,6 +56,11 @@ void
 		this->head = item->next;
 		free(item);
 	}
+
+	if (this->head == NULL) {
+		this->tail = NULL;
+	}
+
 
 	return data;
 }

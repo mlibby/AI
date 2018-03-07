@@ -97,30 +97,37 @@
     <Text Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ai_common.h" />
-    <ClInclude Include="fifo.h" />
-    <ClInclude Include="graph.h" />
-    <ClInclude Include="roadmap.h" />
-    <ClInclude Include="romania.h" />
-    <ClInclude Include="search_node.h" />
-    <ClInclude Include="test.h" />
-    <ClInclude Include="test_fifo.h" />
-    <ClInclude Include="test_graph.h" />
-    <ClInclude Include="test_ai_common.h" />
-    <ClInclude Include="tree_search.h" />
+    <ClInclude Include="include\ai_common.h" />
+    <ClInclude Include="include\breadth_search.h" />
+    <ClInclude Include="include\fifo.h" />
+    <ClInclude Include="include\graph.h" />
+    <ClInclude Include="include\lifo.h" />
+    <ClInclude Include="include\roadmap.h" />
+    <ClInclude Include="include\romania.h" />
+    <ClInclude Include="include\search_node.h" />
+    <ClInclude Include="include\sort.h" />
+    <ClInclude Include="include\test\test.h" />
+    <ClInclude Include="include\test\test_ai_common.h" />
+    <ClInclude Include="include\test\test_breadth_search.h" />
+    <ClInclude Include="include\test\test_fifo.h" />
+    <ClInclude Include="include\test\test_graph.h" />
+    <ClInclude Include="include\test\test_lifo.h" />
+    <ClInclude Include="include\test\test_search_node.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="8puzzle.c" />
-    <ClCompile Include="ai_common.c" />
-    <ClCompile Include="fifo.c" />
-    <ClCompile Include="graph.c" />
-    <ClCompile Include="xearch_map.c" />
-    <ClCompile Include="xearch_node.c" />
-    <ClCompile Include="test_ai_common.c" />
-    <ClCompile Include="test.c" />
-    <ClCompile Include="test_fifo.c" />
-    <ClCompile Include="test_graph.c" />
-    <ClCompile Include="xree_search.c" />
+    <ClCompile Include="src\ai_common.c" />
+    <ClCompile Include="src\breadth_search.c" />
+    <ClCompile Include="src\fifo.c" />
+    <ClCompile Include="src\graph.c" />
+    <ClCompile Include="src\lifo.c" />
+    <ClCompile Include="src\search_node.c" />
+    <ClCompile Include="src\test\test.c" />
+    <ClCompile Include="src\test\test_ai_common.c" />
+    <ClCompile Include="src\test\test_breadth_search.c" />
+    <ClCompile Include="src\test\test_fifo.c" />
+    <ClCompile Include="src\test\test_graph.c" />
+    <ClCompile Include="src\test\test_lifo.c" />
+    <ClCompile Include="src\test\test_search_node.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

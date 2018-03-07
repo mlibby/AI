@@ -77,11 +77,33 @@ void test_fifo_has_items_false_when_empty()
 	fifo_free(fifo);
 }
 
+void test_fifo_add_remove_add()
+{
+	char *foo = "FOO";
+	fifo *fifo = fifo_new();
+	fifo_add(fifo, foo);
+
+	char *oof = fifo_remove(fifo);
+	ASSERT(0 == strcmp(foo, oof));
+	ASSERT(NULL == fifo->head);
+	ASSERT(NULL == fifo->tail);
+
+	char *bar = "BAR";
+	fifo_add(fifo, bar);
+	char *rab = fifo_remove(fifo);
+	ASSERT(0 == strcmp(bar, rab));
+	ASSERT(NULL == fifo->head);
+	ASSERT(NULL == fifo->tail);
+
+	fifo_free(fifo);
+}
+
 void test_fifo_all()
 {
 	test_fifo_new();
 	test_fifo_add_one();
 	test_fifo_add_many();
+	test_fifo_add_remove_add();
 	test_fifo_remove();
 	test_fifo_has_items_false_when_empty();
 }

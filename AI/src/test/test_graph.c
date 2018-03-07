@@ -3,14 +3,16 @@
 #include "graph.h"
 #include "test.h"
 
-void test_graph_new()
+void 
+test_graph_new()
 {
 	graph *graph = graph_new();
 	ASSERT(graph != NULL);
 	graph_free(graph);
 }
 
-void test_graph_add_vertices()
+void 
+test_graph_add_vertices()
 {
 	graph *graph = graph_new();
 	ASSERT(0 == graph_vertex_count(graph));
@@ -28,9 +30,10 @@ void test_graph_add_vertices()
 	graph_free(graph);
 }
 
-/* vertex names must be unique */
-void test_graph_add_duplicate_vertex()
+void 
+test_graph_add_duplicate_vertex()
 {
+	/* vertex names must be unique, adding duplicates is a noop */
 	graph *graph = graph_new();
 
 	char *vertex_one = "Vertex One";
@@ -45,7 +48,8 @@ void test_graph_add_duplicate_vertex()
 	graph_free(graph);
 }
 
-void test_graph_add_edge()
+void
+test_graph_add_edge()
 {
 	graph *graph = graph_new();
 
@@ -74,6 +78,20 @@ void test_graph_add_edge()
 	graph_free(graph);
 }
 
+void
+test_graph_find_missing_vertex()
+{
+	graph *graph = graph_new();
+
+	char *vertex_one = "Vertex One";
+	graph_add_vertex(graph, vertex_one);
+
+	graph_vertex *vertex = graph_find_vertex(graph, "Vertex Two");
+	ASSERT(NULL == vertex);
+
+	graph_free(graph);
+}
+
 static graph_segment segments[] = {
 	{ "NW", "NE", 10, GRAPH_SEGMENT_UNDIRECTED },
 	{ "NE", "SE", 10, GRAPH_SEGMENT_UNDIRECTED },
@@ -84,7 +102,8 @@ static graph_segment segments[] = {
 	{ NULL, NULL, 0, 0}
 };
 
-void test_graph_create()
+void
+test_graph_create()
 {
 	graph *square = graph_create(segments);
 
@@ -117,7 +136,8 @@ void test_graph_create()
 	graph_free(square);
 }
 
-void test_graph_vertex_names()
+void 
+test_graph_vertex_names()
 {
 	graph *square = graph_create(segments);
 	char **vertex_names = graph_get_vertex_names(square);
@@ -137,12 +157,14 @@ void test_graph_vertex_names()
 	graph_free(square);
 }
 
-void test_graph_all()
+void
+test_graph_all()
 {
 	test_graph_new();
 	test_graph_add_vertices();
 	test_graph_add_duplicate_vertex();
 	test_graph_add_edge();
 	test_graph_create();
+	test_graph_find_missing_vertex();
 	test_graph_vertex_names();
 }
