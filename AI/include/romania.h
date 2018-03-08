@@ -2,7 +2,7 @@
 #define _ROMANIA_H
 
 #include <stdlib.h>
-#include "common.h"
+#include "ai_common.h"
 #include "graph.h"
 
 graph_segment cities_of_romania[] = {
@@ -29,7 +29,7 @@ graph_segment cities_of_romania[] = {
 	{ "Pitesti","Rimnica Vilcea" , 97, GRAPH_SEGMENT_UNDIRECTED },
 	{ "Rimnica Vilcea",  "Sibiu", 80, GRAPH_SEGMENT_UNDIRECTED },
 	{ "Urziceni",  "Vaslui", 142, GRAPH_SEGMENT_UNDIRECTED },
-	{ NULL, NULL, NULL, NULL }
+	{ NULL, NULL, 0, 0 }
 };
 
 #endif
