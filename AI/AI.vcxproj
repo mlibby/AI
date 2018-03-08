@@ -100,9 +100,8 @@
   <ItemGroup>
     <ClInclude Include="include\ai_common.h" />
     <ClInclude Include="include\breadth_search.h" />
-    <ClInclude Include="include\fifo.h" />
+    <ClInclude Include="include\queue.h" />
     <ClInclude Include="include\graph.h" />
-    <ClInclude Include="include\lifo.h" />
     <ClInclude Include="include\roadmap.h" />
     <ClInclude Include="include\romania.h" />
     <ClInclude Include="include\search_node.h" />
@@ -110,25 +109,22 @@
     <ClInclude Include="include\test\test.h" />
     <ClInclude Include="include\test\test_ai_common.h" />
     <ClInclude Include="include\test\test_breadth_search.h" />
-    <ClInclude Include="include\test\test_fifo.h" />
+    <ClInclude Include="include\test\test_queue.h" />
     <ClInclude Include="include\test\test_graph.h" />
-    <ClInclude Include="include\test\test_lifo.h" />
     <ClInclude Include="include\test\test_search_node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ai_common.c" />
     <ClCompile Include="src\breadth_search.c" />
-    <ClCompile Include="src\fifo.c" />
+    <ClCompile Include="src\queue.c" />
     <ClCompile Include="src\graph.c" />
-    <ClCompile Include="src\lifo.c" />
     <ClCompile Include="src\search_node.c" />
     <ClCompile Include="src\search_romania.c" />
     <ClCompile Include="src\test\test.c" />
     <ClCompile Include="src\test\test_ai_common.c" />
     <ClCompile Include="src\test\test_breadth_search.c" />
-    <ClCompile Include="src\test\test_fifo.c" />
+    <ClCompile Include="src\test\test_queue.c" />
     <ClCompile Include="src\test\test_graph.c" />
-    <ClCompile Include="src\test\test_lifo.c" />
     <ClCompile Include="src\test\test_search_node.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,15 +1,15 @@
 #ifndef _BREADTH_SEARCH_H
 #define _BREADTH_SEARCH_H
 
-#include "fifo.h"
+#include "queue.h"
 #include "graph.h"
 #include "search_node.h"
 
 typedef struct breadth_search breadth_search;
 struct breadth_search {
 	graph *graph;
-	fifo *nodes;
-	fifo *frontier;
+	queue *nodes;
+	queue *frontier;
 };
 
 breadth_search *breadth_search_new(graph *graph);

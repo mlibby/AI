@@ -2,7 +2,7 @@
 #include "ai_common.h"
 #include "breadth_search.h"
 #include "graph.h"
-#include "lifo.h"
+#include "queue.h"
 #include "romania.h"
 
 int main(int argc, char* argv[]) {
@@ -29,14 +29,14 @@ int main(int argc, char* argv[]) {
 	breadth_search *search = breadth_search_new(romania);
 	search_node *solution = breadth_search_search(search, starting_city, ending_city);
 
-	lifo *path = lifo_new();
+	queue *path = stack_new();
 	while (solution) {
-		lifo_add(path, solution->state);
+		queue_add(path, solution->state);
 		solution = solution->parent;
 	}
 
-	while (lifo_has_items(path)) {
-		printf("From: %s\n", (char *)lifo_remove(path));
+	while (queue_has_items(path)) {
+		printf("From: %s\n", (char *)queue_remove(path));
 	}
 
 	breadth_search_free(search);

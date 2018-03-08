@@ -1,4 +1,4 @@
-#include "fifo.h"
+#include "queue.h"
 #include "graph.h"
 #include "test.h"
 #include "test_breadth_search.h"
