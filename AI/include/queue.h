@@ -25,6 +25,7 @@ queue *stack_new();
 void queue_free(queue *this);
 
 int queue_has_items(queue *this);
+int queue_count_items(queue *this);
 void queue_add(queue *this, void *data);
 void *queue_remove(queue *this);
 

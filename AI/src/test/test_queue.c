@@ -17,6 +17,7 @@ void test_queue_add_one()
 	queue_add(queue, test);
 	ASSERT(queue->head != NULL);
 	ASSERT(queue_has_items(queue) == TRUE);
+	ASSERT(1 == queue_count_items(queue));
 	queue_free(queue);
 }
 
@@ -40,6 +41,7 @@ void test_queue_add_many()
 	}
 
 	ASSERT(3 == item_count);
+	ASSERT(3 == queue_count_items(queue));
 
 	queue_free(queue);
 }
@@ -74,6 +76,7 @@ void test_queue_has_items_false_when_empty()
 {
 	queue *queue = queue_new();
 	ASSERT(queue_has_items(queue) == FALSE);
+	ASSERT(0 == queue_count_items(queue));
 	queue_free(queue);
 }
 

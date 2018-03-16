@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sys/time.h>
 #include "ai_common.h"
 #include "breadth_search.h"
 #include "graph.h"
@@ -27,7 +28,18 @@ int main(int argc, char* argv[]) {
 	printf("Finding route from %s to %s...\n", starting_city, ending_city);
 
 	breadth_search *search = breadth_search_new(romania);
+
+	struct timeval start;
+	gettimeofday(&start, NULL);
+
 	search_node *solution = breadth_search_search(search, starting_city, ending_city);
+
+	struct timeval stop;
+	gettimeofday(&stop, NULL);
+	
+	printf("Search took %lu usec\n", stop.tv_usec - start.tv_usec);
+
+	printf("Nodes used: %d\n", queue_count_items(search->nodes));
 
 	queue *path = stack_new();
 	while (solution) {

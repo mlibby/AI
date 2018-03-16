@@ -30,6 +30,18 @@ queue_free(queue *this)
 }
 
 int
+queue_count_items(queue *this)
+{
+	int count = 0;
+	queue_item *item = this->head;
+	while (item) {
+		count++;
+		item = item->next;
+	}
+	return count;
+}
+
+int
 queue_has_items(queue *this)
 {
 	return this->head != NULL;
