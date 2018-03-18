@@ -35,6 +35,7 @@ struct graph_segment {
 
 graph *graph_new();
 graph *graph_create(graph_segment segments[]);
+graph *graph_create_grid(int width, int height);
 void graph_free(graph *this);
 
 void graph_add_edge(graph *this, char *from, char *to, int cost);

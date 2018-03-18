@@ -158,6 +158,42 @@ test_graph_vertex_names()
 }
 
 void
+test_graph_create_grid_2x1()
+{
+	graph *grid = graph_create_grid(2, 1);
+
+	ASSERT(2 == graph_vertex_count(grid));
+	ASSERT(2 == graph_edge_count(grid));
+	ASSERT(0 == strcmp("0_0", grid->head->name));
+	ASSERT(0 == strcmp("1_0", grid->head->edge->to->name));
+	ASSERT(0 == strcmp("0_0", grid->head->edge->to->edge->to->name));
+	
+	graph_free(grid);
+}
+
+void
+test_graph_create_grid_2x2()
+{
+	graph *grid = graph_create_grid(2, 2);
+
+	ASSERT(4 == graph_vertex_count(grid));
+	ASSERT(8 == graph_edge_count(grid));
+
+	graph_free(grid);
+}
+
+void
+test_graph_create_grid_4x4()
+{
+	graph *grid = graph_create_grid(4, 4);
+
+	ASSERT(16 == graph_vertex_count(grid));
+	ASSERT(48 == graph_edge_count(grid));
+
+	graph_free(grid);
+}
+
+void
 test_graph_all()
 {
 	test_graph_new();
@@ -165,6 +201,9 @@ test_graph_all()
 	test_graph_add_duplicate_vertex();
 	test_graph_add_edge();
 	test_graph_create();
+	test_graph_create_grid_2x1();
+	test_graph_create_grid_2x2();
+	test_graph_create_grid_4x4();
 	test_graph_find_missing_vertex();
 	test_graph_vertex_names();
 }

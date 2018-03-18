@@ -21,6 +21,7 @@ graph_vertex_free(graph_vertex *this)
 		this->edge = edge->next;
 		free(edge);
 	}
+	free(this->name);
 	free(this);
 }
 
@@ -53,7 +54,7 @@ graph_vertex
 *graph_vertex_new(char *name)
 {
 	graph_vertex *vertex = malloc(sizeof(graph_vertex));
-	vertex->name = name;
+	vertex->name = strdup(name);
 	vertex->next = NULL;
 	vertex->edge = NULL;
 	return vertex;
@@ -200,6 +201,37 @@ graph
 	while (segments[x].to != NULL) {
 		graph_create_segment(this, segments[x]);
 		x++;
+	}
+
+	return this;
+}
+
+graph
+*graph_create_grid(int width, int height)
+{
+	graph *this = graph_new();
+
+	for (int y = 0; y < height; y++)
+	{
+		for (int x = 0; x < width; x++)
+		{
+			char from[64];
+			char to[64];
+
+			if (x + 1 < width) {
+				sprintf(from, "%i_%i", x, y);
+				sprintf(to, "%i_%i", x + 1, y);
+				graph_segment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
+				graph_create_segment(this, segment);
+			}
+
+			if (y + 1 < height) {
+				sprintf(from, "%i_%i", x, y);
+				sprintf(to, "%i_%i", x, y + 1);
+				graph_segment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
+				graph_create_segment(this, segment);
+			}
+		}
 	}
 
 	return this;

@@ -100,18 +100,22 @@
   <ItemGroup>
     <ClInclude Include="include\ai_common.h" />
     <ClInclude Include="include\breadth_search.h" />
+    <ClInclude Include="include\environment.h" />
     <ClInclude Include="include\queue.h" />
     <ClInclude Include="include\graph.h" />
     <ClInclude Include="include\roadmap.h" />
     <ClInclude Include="include\romania.h" />
     <ClInclude Include="include\search_node.h" />
+    <ClInclude Include="include\simulator.h" />
     <ClInclude Include="include\sort.h" />
     <ClInclude Include="include\test\test.h" />
     <ClInclude Include="include\test\test_ai_common.h" />
     <ClInclude Include="include\test\test_breadth_search.h" />
+    <ClInclude Include="include\test\test_environment.h" />
     <ClInclude Include="include\test\test_queue.h" />
     <ClInclude Include="include\test\test_graph.h" />
     <ClInclude Include="include\test\test_search_node.h" />
+    <ClInclude Include="include\test\test_simulator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ai_common.c" />
@@ -120,12 +124,16 @@
     <ClCompile Include="src\graph.c" />
     <ClCompile Include="src\search_node.c" />
     <ClCompile Include="src\search_romania.c" />
+    <ClCompile Include="src\simulator.c" />
+    <ClCompile Include="src\environment.c" />
     <ClCompile Include="src\test\test.c" />
     <ClCompile Include="src\test\test_ai_common.c" />
     <ClCompile Include="src\test\test_breadth_search.c" />
+    <ClCompile Include="src\test\test_environment.c" />
     <ClCompile Include="src\test\test_queue.c" />
     <ClCompile Include="src\test\test_graph.c" />
     <ClCompile Include="src\test\test_search_node.c" />
+    <ClCompile Include="src\test\test_simulator.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
