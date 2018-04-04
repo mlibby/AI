@@ -1,26 +1,26 @@
 #ifndef _GRAPH_H
 #define _GRAPH_H
 
-typedef struct graph graph;
-typedef struct graph_vertex graph_vertex;
-typedef struct graph_edge graph_edge;
-typedef struct graph_segment graph_segment;
+typedef struct graph Graph;
+typedef struct graph_vertex GraphVertex;
+typedef struct graph_edge GraphEdge;
+typedef struct graph_segment GraphSegment;
 
 struct graph {
-	graph_vertex *head;
-	graph_vertex *tail;
+	GraphVertex *head;
+	GraphVertex *tail;
 };
 
 struct graph_vertex {
 	char *name;
-	graph_edge *edge; 
-	graph_vertex *next;
+	GraphEdge *edge; 
+	GraphVertex *next;
 };
 
 struct graph_edge {
 	int cost;
-	graph_vertex *to;
-	graph_edge *next;
+	GraphVertex *to;
+	GraphEdge *next;
 };
 
 #define GRAPH_SEGMENT_UNDIRECTED 0
@@ -33,16 +33,16 @@ struct graph_segment {
 	int is_directed;
 };
 
-graph *graph_new();
-graph *graph_create(graph_segment segments[]);
-graph *graph_create_grid(int width, int height);
-void graph_free(graph *this);
+Graph *graph_new();
+Graph *graph_create(GraphSegment segments[]);
+Graph *graph_create_grid(int width, int height);
+void graph_free(Graph *this);
 
-void graph_add_edge(graph *this, char *from, char *to, int cost);
-graph_vertex *graph_add_vertex(graph *this, char *name);
-graph_vertex *graph_find_vertex(graph *this, char *name);
-char **graph_get_vertex_names(graph *this);
-int graph_edge_count(graph *this);
-int graph_vertex_count(graph *this);
+void graph_add_edge(Graph *this, char *from, char *to, int cost);
+GraphVertex *graph_add_vertex(Graph *this, char *name);
+GraphVertex *graph_find_vertex(Graph *this, char *name);
+char **graph_get_vertex_names(Graph *this);
+int graph_edge_count(Graph *this);
+int graph_vertex_count(Graph *this);
 
 #endif /* _GRAPH_H */

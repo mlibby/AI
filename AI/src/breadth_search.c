@@ -6,10 +6,10 @@
 #include "graph.h"
 #include "search_node.h"
 
-breadth_search
-*breadth_search_new(graph *graph)
+BreadthSearch
+*breadth_search_new(Graph *graph)
 {
-	breadth_search *this = malloc(sizeof(breadth_search));
+	BreadthSearch *this = malloc(sizeof(BreadthSearch));
 	this->graph = graph;
 	this->nodes = queue_new();
 	this->frontier = queue_new();
@@ -17,9 +17,9 @@ breadth_search
 }
 
 void 
-breadth_search_free(breadth_search *this)
+breadth_search_free(BreadthSearch *this)
 {
-	search_node *node;
+	SearchNode *node;
 	while (queue_has_items(this->frontier)) {
 		node = queue_remove(this->frontier);
 	}
@@ -33,35 +33,35 @@ breadth_search_free(breadth_search *this)
 }
 
 void
-breadth_search_seed_frontier(breadth_search *this, char *name)
+breadth_search_seed_frontier(BreadthSearch *this, char *name)
 {
-	search_node *node = search_node_new(name, NULL, 0, NULL);
+	SearchNode *node = search_node_new(name, NULL, 0, NULL);
 	queue_add(this->nodes, node);
 	queue_add(this->frontier, node);
 }
 
 void
-breadth_search_expand_node(breadth_search *this, search_node *node)
+breadth_search_expand_node(BreadthSearch *this, SearchNode *node)
 {
-	graph_vertex *vertex = graph_find_vertex(this->graph, node->state);
-	graph_edge *edge = vertex->edge;
+	GraphVertex *vertex = graph_find_vertex(this->graph, node->state);
+	GraphEdge *edge = vertex->edge;
 	while (NULL != edge) {
-		search_node *edge_node = search_node_new(edge->to->name, edge->to->name, edge->cost, node);
+		SearchNode *edge_node = search_node_new(edge->to->name, edge->to->name, edge->cost, node);
 		queue_add(this->nodes, edge_node);
 		queue_add(this->frontier, edge_node);
 		edge = edge->next;
 	}
 }
 
-search_node 
-*breadth_search_search(breadth_search *this, char *from, char *to)
+SearchNode 
+*breadth_search_search(BreadthSearch *this, char *from, char *to)
 {
-	graph_vertex *vertex = graph_find_vertex(this->graph, from);
+	GraphVertex *vertex = graph_find_vertex(this->graph, from);
 	if (NULL != vertex) {
 		breadth_search_seed_frontier(this, vertex->name);
 
 		while (queue_has_items(this->frontier)) {
-			search_node *node = queue_remove(this->frontier);
+			SearchNode *node = queue_remove(this->frontier);
 			if (0 == strcmp(to, node->state)) {
 				return node;
 			}

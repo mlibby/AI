@@ -5,14 +5,14 @@
 
 void test_queue_new()
 {
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 	ASSERT(queue != NULL);
 	queue_free(queue);
 }
 
 void test_queue_add_one()
 {
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 	char *test = "Test";
 	queue_add(queue, test);
 	ASSERT(queue->head != NULL);
@@ -23,7 +23,7 @@ void test_queue_add_one()
 
 void test_queue_add_many()
 {
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 
 	char *one = "Test One";
 	char *two = "Test Two";
@@ -34,7 +34,7 @@ void test_queue_add_many()
 	queue_add(queue, three);
 
 	int item_count = 0;
-	queue_item *item = queue->head;
+	QueueItem *item = queue->head;
 	while (item != NULL) {
 		item = item->next;
 		item_count++;
@@ -48,7 +48,7 @@ void test_queue_add_many()
 
 void test_queue_remove()
 {
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 
 	char *one = "Test One";
 	char *two = "Test Two";
@@ -74,7 +74,7 @@ void test_queue_remove()
 
 void test_queue_has_items_false_when_empty()
 {
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 	ASSERT(queue_has_items(queue) == FALSE);
 	ASSERT(0 == queue_count_items(queue));
 	queue_free(queue);
@@ -83,7 +83,7 @@ void test_queue_has_items_false_when_empty()
 void test_queue_add_remove_add()
 {
 	char *foo = "FOO";
-	queue *queue = queue_new();
+	Queue *queue = queue_new();
 	queue_add(queue, foo);
 
 	char *oof = queue_remove(queue);
@@ -103,7 +103,7 @@ void test_queue_add_remove_add()
 
 void test_stack_remove()
 {
-	queue *lifo = stack_new();
+	Queue *lifo = stack_new();
 
 	char *one = "Test One";
 	char *two = "Test Two";

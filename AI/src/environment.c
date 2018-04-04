@@ -1,16 +1,16 @@
 #include <stdlib.h>
 #include "environment.h"
 
-environment 
-*environment_new(graph *graph)
+Environment 
+*environment_new(Graph *graph)
 {
-	environment *this = malloc(sizeof(environment));
+	Environment *this = malloc(sizeof(Environment));
 	this->graph = graph;
 	return this;
 }
 
 void
-environment_free(environment *this)
+environment_free(Environment *this)
 {
 	free(this);
 }

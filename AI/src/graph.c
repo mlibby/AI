@@ -4,20 +4,20 @@
 #include "ai_common.h"
 #include "graph.h"
 
-graph
+Graph
 *graph_new()
 {
-	graph *this = malloc(sizeof(graph));
+	Graph *this = malloc(sizeof(Graph));
 	this->head = NULL;
 	this->tail = NULL;
 	return this;
 }
 
 void
-graph_vertex_free(graph_vertex *this)
+graph_vertex_free(GraphVertex *this)
 {
 	while (this->edge != NULL) {
-		graph_edge *edge = this->edge;
+		GraphEdge *edge = this->edge;
 		this->edge = edge->next;
 		free(edge);
 	}
@@ -26,21 +26,21 @@ graph_vertex_free(graph_vertex *this)
 }
 
 void
-graph_free(graph *this)
+graph_free(Graph *this)
 {
 	while (this->head != NULL) {
-		graph_vertex *vertex = this->head;
+		GraphVertex *vertex = this->head;
 		this->head = vertex->next;
 		graph_vertex_free(vertex);
 	}
 	free(this);
 }
 
-graph_vertex
-*graph_find_vertex(graph *this, char *name)
+GraphVertex
+*graph_find_vertex(Graph *this, char *name)
 {
-	graph_vertex *found = NULL;
-	graph_vertex *vertex = this->head;
+	GraphVertex *found = NULL;
+	GraphVertex *vertex = this->head;
 	while (found == NULL && vertex != NULL) {
 		if (0 == strcmp(vertex->name, name)) {
 			found = vertex;
@@ -50,20 +50,20 @@ graph_vertex
 	return found;
 }
 
-graph_vertex
+GraphVertex
 *graph_vertex_new(char *name)
 {
-	graph_vertex *vertex = malloc(sizeof(graph_vertex));
+	GraphVertex *vertex = malloc(sizeof(GraphVertex));
 	vertex->name = strdup(name);
 	vertex->next = NULL;
 	vertex->edge = NULL;
 	return vertex;
 }
 
-graph_vertex
-*graph_add_vertex(graph *this, char *name)
+GraphVertex
+*graph_add_vertex(Graph *this, char *name)
 {
-	graph_vertex *vertex = graph_find_vertex(this, name);
+	GraphVertex *vertex = graph_find_vertex(this, name);
 
 	if (vertex == NULL) {
 		vertex = graph_vertex_new(name);
@@ -81,10 +81,10 @@ graph_vertex
 	return vertex;
 }
 
-graph_edge
-*graph_edge_new(graph_vertex *from, graph_vertex *to, int cost)
+GraphEdge
+*graph_edge_new(GraphVertex *from, GraphVertex *to, int cost)
 {
-	graph_edge *edge = malloc(sizeof(graph_edge));
+	GraphEdge *edge = malloc(sizeof(GraphEdge));
 	edge->cost = cost;
 	edge->to = to;
 	edge->next = NULL;
@@ -92,9 +92,9 @@ graph_edge
 }
 
 int
-graph_vertex_has_edge(graph_vertex *from, graph_vertex *to)
+graph_vertex_has_edge(GraphVertex *from, GraphVertex *to)
 {
-	graph_edge *edge = from->edge;
+	GraphEdge *edge = from->edge;
 	while (edge != NULL) {
 		if (edge->to == to) {
 			return TRUE;
@@ -105,15 +105,15 @@ graph_vertex_has_edge(graph_vertex *from, graph_vertex *to)
 }
 
 void
-graph_create_edge(graph *this, graph_vertex *from, graph_vertex *to, int cost)
+graph_create_edge(Graph *this, GraphVertex *from, GraphVertex *to, int cost)
 {
-	graph_edge *edge = graph_edge_new(from, to, cost);
+	GraphEdge *edge = graph_edge_new(from, to, cost);
 
 	if (from->edge == NULL) {
 		from->edge = edge;
 	}
 	else {
-		graph_edge *next = from->edge;
+		GraphEdge *next = from->edge;
 		while (next->next != NULL) {
 
 			next = next->next;
@@ -123,10 +123,10 @@ graph_create_edge(graph *this, graph_vertex *from, graph_vertex *to, int cost)
 }
 
 void
-graph_add_edge(graph *this, char *from, char *to, int cost)
+graph_add_edge(Graph *this, char *from, char *to, int cost)
 {
-	graph_vertex *from_vertex = graph_find_vertex(this, from);
-	graph_vertex *to_vertex = graph_find_vertex(this, to);
+	GraphVertex *from_vertex = graph_find_vertex(this, from);
+	GraphVertex *to_vertex = graph_find_vertex(this, to);
 
 	if (from_vertex && to_vertex) {
 		if (graph_vertex_has_edge(from_vertex, to_vertex)) {
@@ -137,10 +137,10 @@ graph_add_edge(graph *this, char *from, char *to, int cost)
 }
 
 int
-graph_vertex_count(graph *this)
+graph_vertex_count(Graph *this)
 {
 	int count = 0;
-	graph_vertex *vertex = this->head;
+	GraphVertex *vertex = this->head;
 	while (vertex != NULL) {
 		count++;
 		vertex = vertex->next;
@@ -149,12 +149,12 @@ graph_vertex_count(graph *this)
 }
 
 char
-**graph_get_vertex_names(graph *this)
+**graph_get_vertex_names(Graph *this)
 {
 	int count = graph_vertex_count(this);
 	char **names = malloc(sizeof(char*) * count);
 
-	graph_vertex *vertex = this->head;
+	GraphVertex *vertex = this->head;
 	for (int i = 0; i < count; i++) {
 		names[i] = strdup(vertex->name);
 		vertex = vertex->next;
@@ -165,12 +165,12 @@ char
 
 
 int
-graph_edge_count(graph *this)
+graph_edge_count(Graph *this)
 {
 	int count = 0;
-	graph_vertex *vertex = this->head;
+	GraphVertex *vertex = this->head;
 	while (vertex != NULL) {
-		graph_edge *edge = vertex->edge;
+		GraphEdge *edge = vertex->edge;
 		while (edge != NULL) {
 			count++;
 			edge = edge->next;
@@ -181,10 +181,10 @@ graph_edge_count(graph *this)
 }
 
 void
-graph_create_segment(graph *this, graph_segment segment)
+graph_create_segment(Graph *this, GraphSegment segment)
 {
-	graph_vertex *from_vertex = graph_add_vertex(this, segment.from);
-	graph_vertex *to_vertex = graph_add_vertex(this, segment.to);
+	GraphVertex *from_vertex = graph_add_vertex(this, segment.from);
+	GraphVertex *to_vertex = graph_add_vertex(this, segment.to);
 
 	graph_create_edge(this, from_vertex, to_vertex, segment.cost);
 	if (!segment.is_directed) {
@@ -192,10 +192,10 @@ graph_create_segment(graph *this, graph_segment segment)
 	}
 }
 
-graph
-*graph_create(graph_segment segments[])
+Graph
+*graph_create(GraphSegment segments[])
 {
-	graph *this = graph_new();
+	Graph *this = graph_new();
 
 	int x = 0;
 	while (segments[x].to != NULL) {
@@ -206,10 +206,10 @@ graph
 	return this;
 }
 
-graph
+Graph
 *graph_create_grid(int width, int height)
 {
-	graph *this = graph_new();
+	Graph *this = graph_new();
 
 	for (int y = 0; y < height; y++)
 	{
@@ -221,14 +221,14 @@ graph
 			if (x + 1 < width) {
 				sprintf(from, "%i_%i", x, y);
 				sprintf(to, "%i_%i", x + 1, y);
-				graph_segment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
+				GraphSegment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
 				graph_create_segment(this, segment);
 			}
 
 			if (y + 1 < height) {
 				sprintf(from, "%i_%i", x, y);
 				sprintf(to, "%i_%i", x, y + 1);
-				graph_segment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
+				GraphSegment segment = { from, to, 1, GRAPH_SEGMENT_UNDIRECTED };
 				graph_create_segment(this, segment);
 			}
 		}

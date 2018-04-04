@@ -1,4 +1,5 @@
 #include "test.h"
+#include "test_agent.h"
 #include "test_ai_common.h"
 #include "test_breadth_search.h"
 #include "test_environment.h"
@@ -13,6 +14,7 @@ int tests_run = 0;
 int main(int argc, char **argv)
 {
 	test_ai_common_all();
+	test_agent_all();
 	test_breadth_search_all();
 	test_environment_all();
 	test_graph_all();

@@ -5,7 +5,7 @@
 #include "ai_common.h"
 #include "graph.h"
 
-graph_segment cities_of_romania[] = {
+GraphSegment cities_of_romania[] = {
 	{ "Arad", "Sibiu", 140, GRAPH_SEGMENT_UNDIRECTED},
 	{ "Arad", "Timisoara", 118, GRAPH_SEGMENT_UNDIRECTED },
 	{ "Arad",  "Zerind", 75, GRAPH_SEGMENT_UNDIRECTED },

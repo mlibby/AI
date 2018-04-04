@@ -1,15 +1,15 @@
 #ifndef _SEARCH_NODE_H
 #define _SEARCH_NODE_H
 
-typedef struct search_node search_node;
+typedef struct search_node SearchNode;
 struct search_node {
 	char *state;
 	char *action;
 	int path_cost;
-	search_node *parent;
+	SearchNode *parent;
 };
 
-search_node *search_node_new(char *state, char *action, int path_cost, search_node *parent);
-void search_node_free(search_node *this);
+SearchNode *search_node_new(char *state, char *action, int path_cost, SearchNode *parent);
+void search_node_free(SearchNode *this);
 
 #endif /* _SEARCH_NODE_H */

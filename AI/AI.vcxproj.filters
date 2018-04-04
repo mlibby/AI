@@ -66,6 +66,12 @@
     <ClCompile Include="src\environment.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\test\test_agent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\agent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_common.h">
@@ -77,16 +83,10 @@
     <ClInclude Include="include\graph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\roadmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\romania.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\search_node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\sort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\test\test.h">
@@ -120,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\environment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test\test_agent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

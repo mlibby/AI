@@ -5,16 +5,16 @@
 #include "graph.h"
 #include "search_node.h"
 
-typedef struct breadth_search breadth_search;
+typedef struct breadth_search BreadthSearch;
 struct breadth_search {
-	graph *graph;
-	queue *nodes;
-	queue *frontier;
+	Graph *graph;
+	Queue *nodes;
+	Queue *frontier;
 };
 
-breadth_search *breadth_search_new(graph *graph);
-void breadth_search_free(breadth_search *this);
+BreadthSearch *breadth_search_new(Graph *graph);
+void breadth_search_free(BreadthSearch *this);
 
-search_node *breadth_search_search(breadth_search *this, char *from, char *to);
+SearchNode *breadth_search_search(BreadthSearch *this, char *from, char *to);
 
 #endif /* _BREADTH_SEARCH_H */

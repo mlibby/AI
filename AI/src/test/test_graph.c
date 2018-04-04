@@ -6,7 +6,7 @@
 void 
 test_graph_new()
 {
-	graph *graph = graph_new();
+	Graph *graph = graph_new();
 	ASSERT(graph != NULL);
 	graph_free(graph);
 }
@@ -14,7 +14,7 @@ test_graph_new()
 void 
 test_graph_add_vertices()
 {
-	graph *graph = graph_new();
+	Graph *graph = graph_new();
 	ASSERT(0 == graph_vertex_count(graph));
 
 	char *vertex_one = "Vertex One";
@@ -34,7 +34,7 @@ void
 test_graph_add_duplicate_vertex()
 {
 	/* vertex names must be unique, adding duplicates is a noop */
-	graph *graph = graph_new();
+	Graph *graph = graph_new();
 
 	char *vertex_one = "Vertex One";
 	graph_add_vertex(graph, vertex_one);
@@ -51,7 +51,7 @@ test_graph_add_duplicate_vertex()
 void
 test_graph_add_edge()
 {
-	graph *graph = graph_new();
+	Graph *graph = graph_new();
 
 	char *vertex_one = "Vertex One";
 	graph_add_vertex(graph, vertex_one);
@@ -81,18 +81,18 @@ test_graph_add_edge()
 void
 test_graph_find_missing_vertex()
 {
-	graph *graph = graph_new();
+	Graph *graph = graph_new();
 
 	char *vertex_one = "Vertex One";
 	graph_add_vertex(graph, vertex_one);
 
-	graph_vertex *vertex = graph_find_vertex(graph, "Vertex Two");
+	GraphVertex *vertex = graph_find_vertex(graph, "Vertex Two");
 	ASSERT(NULL == vertex);
 
 	graph_free(graph);
 }
 
-static graph_segment segments[] = {
+static GraphSegment segments[] = {
 	{ "NW", "NE", 10, GRAPH_SEGMENT_UNDIRECTED },
 	{ "NE", "SE", 10, GRAPH_SEGMENT_UNDIRECTED },
 	{ "SE", "SW", 10, GRAPH_SEGMENT_UNDIRECTED },
@@ -105,15 +105,15 @@ static graph_segment segments[] = {
 void
 test_graph_create()
 {
-	graph *square = graph_create(segments);
+	Graph *square = graph_create(segments);
 
 	ASSERT(4 == graph_vertex_count(square));
 	ASSERT(10 == graph_edge_count(square)); // six edges, but four are undirected (4 x 2) + 2 = 10
 
-	graph_vertex *nw = graph_find_vertex(square, "NW");
+	GraphVertex *nw = graph_find_vertex(square, "NW");
 	ASSERT(0 == strcmp("NW", nw->name));
 
-	graph_edge *edge = nw->edge;
+	GraphEdge *edge = nw->edge;
 	int edge_count = 0;
 
 	int leads_to_ne = 0;
@@ -139,7 +139,7 @@ test_graph_create()
 void 
 test_graph_vertex_names()
 {
-	graph *square = graph_create(segments);
+	Graph *square = graph_create(segments);
 	char **vertex_names = graph_get_vertex_names(square);
 	int vertex_count = graph_vertex_count(square);
 
@@ -160,7 +160,7 @@ test_graph_vertex_names()
 void
 test_graph_create_grid_2x1()
 {
-	graph *grid = graph_create_grid(2, 1);
+	Graph *grid = graph_create_grid(2, 1);
 
 	ASSERT(2 == graph_vertex_count(grid));
 	ASSERT(2 == graph_edge_count(grid));
@@ -174,7 +174,7 @@ test_graph_create_grid_2x1()
 void
 test_graph_create_grid_2x2()
 {
-	graph *grid = graph_create_grid(2, 2);
+	Graph *grid = graph_create_grid(2, 2);
 
 	ASSERT(4 == graph_vertex_count(grid));
 	ASSERT(8 == graph_edge_count(grid));
@@ -185,7 +185,7 @@ test_graph_create_grid_2x2()
 void
 test_graph_create_grid_4x4()
 {
-	graph *grid = graph_create_grid(4, 4);
+	Graph *grid = graph_create_grid(4, 4);
 
 	ASSERT(16 == graph_vertex_count(grid));
 	ASSERT(48 == graph_edge_count(grid));

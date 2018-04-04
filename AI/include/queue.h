@@ -7,26 +7,26 @@ enum QueueType {
 	PriorityQueue = 3
 };
 
-typedef struct _queue_item queue_item;
+typedef struct _queue_item QueueItem;
 struct _queue_item {
-	queue_item *next;
+	QueueItem *next;
 	void *data;
 };
 
-typedef struct _queue queue;
+typedef struct _queue Queue;
 struct _queue {
 	int type;
-	queue_item *head;
-	queue_item *tail;
+	QueueItem *head;
+	QueueItem *tail;
 };
 
-queue *queue_new();
-queue *stack_new();
-void queue_free(queue *this);
+Queue *queue_new();
+Queue *stack_new();
+void queue_free(Queue *this);
 
-int queue_has_items(queue *this);
-int queue_count_items(queue *this);
-void queue_add(queue *this, void *data);
-void *queue_remove(queue *this);
+int queue_has_items(Queue *this);
+int queue_count_items(Queue *this);
+void queue_add(Queue *this, void *data);
+void *queue_remove(Queue *this);
 
 #endif /* _QUEUE_H */

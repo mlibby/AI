@@ -6,8 +6,8 @@
 void
 test_environment_new()
 {
-	graph *graph = graph_new();
-	environment *env = environment_new(graph);
+	Graph *graph = graph_new();
+	Environment *env = environment_new(graph);
 	ASSERT(graph == env->graph);
 	environment_free(env);
 	graph_free(graph);

@@ -9,7 +9,7 @@
 int main(int argc, char* argv[]) {
 	printf("Find a path in Romania\n");
 
-	graph *romania = graph_create(cities_of_romania);
+	Graph *romania = graph_create(cities_of_romania);
 
 	printf("Here is the list of cities:\n");
 	int city_count = graph_vertex_count(romania);
@@ -27,12 +27,12 @@ int main(int argc, char* argv[]) {
 
 	printf("Finding route from %s to %s...\n", starting_city, ending_city);
 
-	breadth_search *search = breadth_search_new(romania);
+	BreadthSearch *search = breadth_search_new(romania);
 
 	struct timeval start;
 	gettimeofday(&start, NULL);
 
-	search_node *solution = breadth_search_search(search, starting_city, ending_city);
+	SearchNode *solution = breadth_search_search(search, starting_city, ending_city);
 
 	struct timeval stop;
 	gettimeofday(&stop, NULL);
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
 	printf("Nodes used: %d\n", queue_count_items(search->nodes));
 
-	queue *path = stack_new();
+	Queue *path = stack_new();
 	while (solution) {
 		queue_add(path, solution->state);
 		solution = solution->parent;

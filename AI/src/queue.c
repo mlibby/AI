@@ -2,26 +2,26 @@
 #include "ai_common.h"
 #include "queue.h"
 
-queue
+Queue
 *queue_new()
 {
-	queue *this = malloc(sizeof(queue));
+	Queue *this = malloc(sizeof(Queue));
 	this->type = FirstInFirstOutQueue;
 	this->head = NULL;
 	this->tail = NULL;
 	return this;
 }
 
-queue
+Queue
 *stack_new()
 {
-	queue *this = queue_new();
+	Queue *this = queue_new();
 	this->type = FirstInLastOutQueue;
 	return this;
 }
 
 void
-queue_free(queue *this)
+queue_free(Queue *this)
 {
 	while (queue_has_items(this)) {
 		queue_remove(this);
@@ -30,10 +30,10 @@ queue_free(queue *this)
 }
 
 int
-queue_count_items(queue *this)
+queue_count_items(Queue *this)
 {
 	int count = 0;
-	queue_item *item = this->head;
+	QueueItem *item = this->head;
 	while (item) {
 		count++;
 		item = item->next;
@@ -42,15 +42,15 @@ queue_count_items(queue *this)
 }
 
 int
-queue_has_items(queue *this)
+queue_has_items(Queue *this)
 {
 	return this->head != NULL;
 }
 
 void
-fifo_add(queue *this, void *data)
+fifo_add(Queue *this, void *data)
 {
-	queue_item *item = malloc(sizeof(queue_item)); 
+	QueueItem *item = malloc(sizeof(QueueItem)); 
 	item->next = NULL;
 	item->data = data;
 
@@ -66,9 +66,9 @@ fifo_add(queue *this, void *data)
 }
 
 void
-lifo_add(queue *this, void *data)
+lifo_add(Queue *this, void *data)
 {
-	queue_item *item = malloc(sizeof(queue_item));
+	QueueItem *item = malloc(sizeof(QueueItem));
 	item->next = this->head;
 	item->data = data;
 
@@ -76,7 +76,7 @@ lifo_add(queue *this, void *data)
 }
 
 void
-queue_add(queue *this, void *data)
+queue_add(Queue *this, void *data)
 {
 	switch (this->type) {
 	case FirstInLastOutQueue:
@@ -89,12 +89,12 @@ queue_add(queue *this, void *data)
 }
 
 void
-*fifo_remove(queue *this)
+*fifo_remove(Queue *this)
 {
 	void *data = NULL;
 
 	if (this->head != NULL) {
-		queue_item *item = this->head;
+		QueueItem *item = this->head;
 		data = item->data;
 		this->head = item->next;
 		free(item);
@@ -108,12 +108,12 @@ void
 }
 
 void
-*lifo_remove(queue *this)
+*lifo_remove(Queue *this)
 {
 	void *data = NULL;
 
 	if (this->head != NULL) {
-		queue_item *item = this->head;
+		QueueItem *item = this->head;
 		data = item->data;
 		this->head = item->next;
 		free(item);
@@ -123,7 +123,7 @@ void
 }
 
 void
-*queue_remove(queue *this)
+*queue_remove(Queue *this)
 {
 	switch (this->type) {
 	case FirstInLastOutQueue:

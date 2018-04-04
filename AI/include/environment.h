@@ -3,13 +3,13 @@
 
 #include "graph.h"
 
-typedef struct environment environment;
+typedef struct environment Environment;
 struct environment {
-	graph *graph;
+	Graph *graph;
 };
 
-environment *environment_new(graph *graph);
-void environment_free(environment *this);
+Environment *environment_new(Graph *graph);
+void environment_free(Environment *this);
 
 #endif /* _ENVIRONMENT_H */
 
