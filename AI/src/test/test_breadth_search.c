@@ -49,7 +49,7 @@ test_breadth_search_from_to_same()
 	ASSERT(NULL == solution->parent);
 	ASSERT(0 == solution->path_cost);
 	ASSERT(0 == strcmp("FROM", solution->state));
-	ASSERT(NULL == solution->action);
+	ASSERT(0 == strcmp("", solution->action));
 
 	breadth_search_free(search);
 	graph_free(square);
@@ -76,7 +76,7 @@ test_breadth_search_single_segment()
 	SearchNode *parent = solution->parent;
 	ASSERT(NULL == parent->parent);
 	ASSERT(0 == strcmp("FROM", parent->state));
-	ASSERT(NULL == parent->action);
+	ASSERT(0 == strcmp("", parent->action));
 	ASSERT(0 == parent->path_cost);
 
 	breadth_search_free(search);

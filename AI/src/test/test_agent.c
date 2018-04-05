@@ -8,7 +8,7 @@ test_agent_all()
 {
 	Agent *agent = agent_new("TEST");
 	
-	char *action = agent_get_action(agent, "0_0,DIRTY");
+	const char *action = agent_get_action(agent, "0_0,DIRTY");
 	ASSERT(0 == strcmp(action, "SUCK"));
 	
 	action = agent_get_action(agent, "0_0,CLEAN");

@@ -25,7 +25,7 @@ breadth_search_free(BreadthSearch *this)
 	}
 	while (queue_has_items(this->nodes)) {
 		node = queue_remove(this->nodes);
-		free(node);
+		search_node_free(node);
 	}
 	queue_free(this->frontier);
 	queue_free(this->nodes);
@@ -35,7 +35,7 @@ breadth_search_free(BreadthSearch *this)
 void
 breadth_search_seed_frontier(BreadthSearch *this, char *name)
 {
-	SearchNode *node = search_node_new(name, NULL, 0, NULL);
+	SearchNode *node = search_node_new(name, "", 0, NULL);
 	queue_add(this->nodes, node);
 	queue_add(this->frontier, node);
 }

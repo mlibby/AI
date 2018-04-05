@@ -9,7 +9,7 @@ struct search_node {
 	SearchNode *parent;
 };
 
-SearchNode *search_node_new(char *state, char *action, int path_cost, SearchNode *parent);
+SearchNode *search_node_new(const char *state, const char *action, int path_cost, SearchNode *parent);
 void search_node_free(SearchNode *this);
 
 #endif /* _SEARCH_NODE_H */

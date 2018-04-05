@@ -5,7 +5,7 @@
 void
 test_search_node_new()
 {
-	SearchNode *parent = search_node_new("Parent", NULL, 0, NULL);
+	SearchNode *parent = search_node_new("Parent", "", 0, NULL);
 	SearchNode *node = search_node_new("Node", "Action", 123, parent);
 	ASSERT(0 == strcmp("Node", node->state));
 	ASSERT(0 == strcmp("Action", node->action));

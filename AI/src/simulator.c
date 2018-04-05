@@ -50,6 +50,7 @@ Agent
 		if (0 == strcmp(name, agent_location->agent->name)) {
 			return agent_location->agent;
 		}
+		queue_item = queue_item->next;
 	}
 	return NULL;
 }

@@ -17,7 +17,7 @@ sort_char_in_place(int list_size, char **list) {
 }
 
 int
-get_numeric_input(char *prompt, int min, int max, ptr_getline getline, ptr_printf printf)
+get_numeric_input(const char *prompt, int min, int max, ptr_getline getline, ptr_printf printf)
 {
 	int result = -1;
 	char *line = NULL;

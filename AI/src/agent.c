@@ -2,8 +2,8 @@
 #include <string.h>
 #include "agent.h"
 
-Agent
-*agent_new(char const *name)
+Agent*
+agent_new(const char *name)
 {
 	Agent *this = malloc(sizeof(Agent));
 	this->name = strdup(name);
@@ -17,20 +17,21 @@ agent_free(Agent *this)
 	free(this);
 }
 
-char
-*agent_get_action(Agent *this, char const *percept)
+const char*
+agent_get_action(Agent *this, const char *percept)
 {
+	char *action = "";
 	if (0 == strcmp("0_0,DIRTY", percept)) {
-		return "SUCK";
+		action = "SUCK";
 	}
 	if (0 == strcmp("0_0,CLEAN", percept)) {
-		return "RIGHT";
+		action = "RIGHT";
 	}
 	if (0 == strcmp("1_0,DIRTY", percept)) {
-		return "SUCK";
+		action = "SUCK";
 	}
 	if (0 == strcmp("1_0,CLEAN", percept)) {
-		return "LEFT";
+		action = "LEFT";
 	}
-	return "";
+	return action;
 }

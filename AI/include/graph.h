@@ -38,9 +38,9 @@ Graph *graph_create(GraphSegment segments[]);
 Graph *graph_create_grid(int width, int height);
 void graph_free(Graph *this);
 
-void graph_add_edge(Graph *this, char *from, char *to, int cost);
-GraphVertex *graph_add_vertex(Graph *this, char *name);
-GraphVertex *graph_find_vertex(Graph *this, char *name);
+void graph_add_edge(Graph *this, const char *from, const char *to, int cost);
+GraphVertex *graph_add_vertex(Graph *this, const char *name);
+GraphVertex *graph_find_vertex(Graph *this, const char *name);
 char **graph_get_vertex_names(Graph *this);
 int graph_edge_count(Graph *this);
 int graph_vertex_count(Graph *this);

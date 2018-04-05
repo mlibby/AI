@@ -37,7 +37,7 @@ graph_free(Graph *this)
 }
 
 GraphVertex
-*graph_find_vertex(Graph *this, char *name)
+*graph_find_vertex(Graph *this, const char *name)
 {
 	GraphVertex *found = NULL;
 	GraphVertex *vertex = this->head;
@@ -51,7 +51,7 @@ GraphVertex
 }
 
 GraphVertex
-*graph_vertex_new(char *name)
+*graph_vertex_new(const char *name)
 {
 	GraphVertex *vertex = malloc(sizeof(GraphVertex));
 	vertex->name = strdup(name);
@@ -61,7 +61,7 @@ GraphVertex
 }
 
 GraphVertex
-*graph_add_vertex(Graph *this, char *name)
+*graph_add_vertex(Graph *this, const char *name)
 {
 	GraphVertex *vertex = graph_find_vertex(this, name);
 
@@ -123,7 +123,7 @@ graph_create_edge(Graph *this, GraphVertex *from, GraphVertex *to, int cost)
 }
 
 void
-graph_add_edge(Graph *this, char *from, char *to, int cost)
+graph_add_edge(Graph *this, const char *from, const char *to, int cost)
 {
 	GraphVertex *from_vertex = graph_find_vertex(this, from);
 	GraphVertex *to_vertex = graph_find_vertex(this, to);

@@ -6,7 +6,7 @@
 #include "simulator.h"
 
 void
-test_simulator_add_agent()
+test_simulator_add_and_get_agent()
 {
 	Graph *grid = graph_create_grid(2, 1);
 	Environment *environment = environment_new(grid);
@@ -16,6 +16,7 @@ test_simulator_add_agent()
 	Agent *agent = agent_new("ReflexVacuum");
 	simulator_add_agent(simulator, agent, "0_0");
 	ASSERT(NULL != simulator_get_agent(simulator, "ReflexVacuum"));
+	ASSERT(NULL == simulator_get_agent(simulator, "FOOBAR"));
 
 	agent_free(agent);
 	simulator_free(simulator);
@@ -55,7 +56,7 @@ test_simulator_set_environment()
 void
 test_simulator_all()
 {
-	test_simulator_add_agent();
+	test_simulator_add_and_get_agent();
 	test_simulator_new();
 	test_simulator_set_environment();
 }

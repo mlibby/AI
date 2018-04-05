@@ -8,9 +8,9 @@ struct agent {
 	char *name;
 };
 
-Agent *agent_new(char const *name);
+Agent *agent_new(const char *name);
 void agent_free(Agent *this);
 
-char *agent_get_action(Agent *this, char const *percept);
+const char *agent_get_action(Agent *this, const char *percept);
 
 #endif /* _AGENT_H */
