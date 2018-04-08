@@ -15,6 +15,7 @@ struct graph_vertex {
 	char *name;
 	GraphEdge *edge; 
 	GraphVertex *next;
+	void *data;
 };
 
 struct graph_edge {
@@ -44,5 +45,7 @@ GraphVertex *graph_find_vertex(Graph *this, const char *name);
 char **graph_get_vertex_names(Graph *this);
 int graph_edge_count(Graph *this);
 int graph_vertex_count(Graph *this);
+void graph_set_vertex_data(Graph *this, const char *name, void *data);
+void *graph_get_vertex_data(Graph *this, const char *name);
 
 #endif /* _GRAPH_H */

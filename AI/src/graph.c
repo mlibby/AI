@@ -148,6 +148,20 @@ graph_vertex_count(Graph *this)
 	return count;
 }
 
+void 
+graph_set_vertex_data(Graph *this, const char *name, void *data)
+{
+	GraphVertex *vertex = graph_find_vertex(this, name);
+	vertex->data = data;
+}
+
+void 
+*graph_get_vertex_data(Graph *this, const char *name)
+{
+	GraphVertex *vertex = graph_find_vertex(this, name);
+	return vertex->data;
+}
+
 char
 **graph_get_vertex_names(Graph *this)
 {

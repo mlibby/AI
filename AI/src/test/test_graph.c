@@ -172,6 +172,19 @@ test_graph_create_grid_2x1()
 }
 
 void
+test_graph_can_store_data()
+{
+	Graph *grid = graph_create_grid(2, 1);
+	graph_set_vertex_data(grid, "0_0", "DIRTY");
+	graph_set_vertex_data(grid, "1_0", "CLEAN");
+
+	ASSERT(0 == strcmp("DIRTY", graph_get_vertex_data(grid, "0_0")));
+	ASSERT(0 == strcmp("CLEAN", graph_get_vertex_data(grid, "1_0")));
+
+	graph_free(grid);
+}
+
+void
 test_graph_create_grid_2x2()
 {
 	Graph *grid = graph_create_grid(2, 2);
@@ -206,4 +219,5 @@ test_graph_all()
 	test_graph_create_grid_4x4();
 	test_graph_find_missing_vertex();
 	test_graph_vertex_names();
+	test_graph_can_store_data();
 }
